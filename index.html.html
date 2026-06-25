@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mr. Mostafa Nassar | English Learning Platform</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Cairo:wght@400;600;700;800&display=swap');
+
+  :root {
+    --navy: #1a2744;
+    --navy-light: #243260;
+    --gold: #f0a500;
+    --gold-light: #ffc93c;
+    --white: #ffffff;
+    --bg: #f5f7fa;
+    --text: #2d3748;
+    --muted: #718096;
+    --success: #38a169;
+    --danger: #e53e3e;
+    --card-shadow: 0 4px 24px rgba(26,39,68,0.10);
+    --radius: 14px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+  }
+
+  /* ===== NAVBAR ===== */
+  nav {
+    background: var(--navy);
+    padding: 0 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+    height: 64px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+
+  .nav-logo .star { color: var(--gold); font-size: 1.4rem; }
+
+  .nav-links {
+    display: flex;
+    gap: 4px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: rgba(255,255,255,0.75);
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .nav-links a:hover, .nav-links a.active {
+    color: var(--gold);
+    background: rgba(240,165,0,0.12);
+  }
+
+  /* ===== PAGES ===== */
+  .page { display: none; animation: fadeIn 0.35s ease; }
+  .page.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 60%, #1e3a8a 100%);
+    color: white;
+    padding: 80px 2rem 60px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(240,165,0,0.15) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(240,165,0,0.10) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+
+  .hero-badge {
+    display: inline-block;
+    background: rgba(240,165,0,0.18);
+    border: 1px solid rgba(240,165,0,0.4);
+    color: var(--gold-light);
+    padding: 6px 18px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .hero h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 span { color: var(--gold); }
+
+  .hero-sub {
+    font-size: 1.15rem;
+    opacity: 0.85;
+    margin: 16px auto 36px;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+  .btn {
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: none;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.22s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-gold { background: var(--gold); color: var(--navy); }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(240,165,0,0.4); }
+
+  .btn-outline { background: transparent; color: white; border: 2px solid rgba(255,255,255,0.5); }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+  /* ===== STATS ===== */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1px;
+    background: var(--navy);
+    border-top: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .stat-item {
+    background: var(--navy-light);
+    text-align: center;
+    padding: 24px 16px;
+    color: white;
+  }
+
+  .stat-num { font-size: 2rem; font-weight: 800; color: var(--gold); font-family: 'Poppins', sans-serif; }
+  .stat-label { font-size: 0.85rem; opacity: 0.7; margin-top: 4px; }
+
+  /* ===== SECTION TITLE ===== */
+  .section { padding: 60px 2rem; max-width: 1100px; margin: 0 auto; }
+
+  .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .section-title .eyebrow {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .section-title h2 {
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-weight: 800;
+    color: var(--navy);
+  }
+
+  .section-title p { color: var(--muted); margin-top: 10px; font-size: 1rem; }
+
+  /* ===== GRID CARDS ===== */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 22px;
+  }
+
+  .card {
+    background: white;
+    border-radius: var(--radius);
+    padding: 28px 24px;
+    box-shadow: var(--card-shadow);
+    border: 1px solid rgba(26,39,68,0.06);
+    transition: transform 0.22s, box-shadow 0.22s;
+    cursor: pointer;
+  }
+
+  .card:hover { transform: translateY(-4px); box-shadow: 0 12px 36px rgba(26,39,68,0.14); }
+
+  .card-icon {
+    width: 52px; height: 52px;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 18px;
+  }
+
+  .card h3 { font-size: 1.1rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .card p { font-size: 0.9rem; color: var(--muted); line-height: 1.7; }
+
+  .card-tag {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-top: 14px;
+  }
+
+  .tag-beginner { background: #ebf8ee; color: var(--success); }
+  .tag-intermediate { background: #fff8e1; color: #b7791f; }
+  .tag-advanced { background: #fff0f0; color: var(--danger); }
+
+  /* ===== COURSES PAGE ===== */
+  .page-header {
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    color: white;
+    padding: 50px 2rem 40px;
+    text-align: center;
+  }
+
+  .page-header h1 { font-size: 2rem; font-weight: 800; }
+  .page-header p { opacity: 0.75; margin-top: 8px; }
+
+  .filter-bar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+
+  .filter-btn {
+    padding: 8px 18px;
+    border-radius: 50px;
+    border: 2px solid var(--navy);
+    background: transparent;
+    color: var(--navy);
+    font-weight: 700;
+    font-size: 0.88rem;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.2s;
+  }
+
+  .filter-btn.active, .filter-btn:hover {
+    background: var(--navy);
+    color: white;
+  }
+
+  /* ===== EXAM PAGE ===== */
+  .exam-box {
+    background: white;
+    border-radius: var(--radius);
+    padding: 36px;
+    box-shadow: var(--card-shadow);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .question-block { margin-bottom: 28px; }
+  .question-block .q-num {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+  .question-block .q-text {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 14px;
+    line-height: 1.6;
+  }
+
+  .options { display: flex; flex-direction: column; gap: 10px; }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.18s;
+    font-size: 0.95rem;
+  }
+
+  .option:hover { border-color: var(--navy); background: #f0f4ff; }
+  .option.selected { border-color: var(--navy); background: #eef2ff; }
+  .option.correct { border-color: var(--success); background: #f0fff4; color: var(--success); }
+  .option.wrong { border-color: var(--danger); background: #fff5f5; color: var(--danger); }
+
+  .option input[type="radio"] { display: none; }
+
+  .option-letter {
+    width: 28px; height: 28px;
+    border-radius: 50%;
+    background: #e2e8f0;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+    transition: all 0.18s;
+  }
+
+  .option.selected .option-letter { background: var(--navy); color: white; }
+  .option.correct .option-letter { background: var(--success); color: white; }
+  .option.wrong .option-letter { background: var(--danger); color: white; }
+
+  .progress-bar-wrap { background: #e2e8f0; border-radius: 50px; height: 8px; margin-bottom: 28px; }
+  .progress-bar { height: 8px; border-radius: 50px; background: linear-gradient(90deg, var(--navy), var(--gold)); transition: width 0.4s; }
+
+  .exam-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 28px; flex-wrap: wrap; gap: 12px; }
+
+  .score-badge {
+    text-align: center;
+    padding: 40px;
+  }
+
+  .score-circle {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--navy), var(--navy-light));
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 24px;
+    box-shadow: 0 8px 32px rgba(26,39,68,0.25);
+  }
+
+  .score-circle span { font-size: 2.4rem; font-weight: 800; color: var(--gold); font-family: 'Poppins', sans-serif; }
+
+  /* ===== VOCABULARY ===== */
+  .vocab-controls {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .search-input {
+    flex: 1;
+    min-width: 200px;
+    padding: 11px 18px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-family: 'Cairo', sans-serif;
+    outline: none;
+    transition: border 0.2s;
+  }
+
+  .search-input:focus { border-color: var(--navy); }
+
+  .vocab-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+  }
+
+  .vocab-card {
+    background: white;
+    border-radius: 12px;
+    padding: 22px 20px;
+    box-shadow: var(--card-shadow);
+    border-top: 3px solid var(--navy);
+    transition: transform 0.2s;
+    position: relative;
+  }
+
+  .vocab-card:hover { transform: translateY(-3px); }
+
+  .vocab-en { font-family: 'Poppins', sans-serif; font-size: 1.25rem; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+  .vocab-ar { font-size: 0.95rem; color: var(--muted); margin-bottom: 8px; }
+  .vocab-ex { font-size: 0.82rem; color: var(--text); font-style: italic; border-top: 1px solid #e2e8f0; padding-top: 8px; margin-top: 8px; font-family: 'Poppins', sans-serif; line-height: 1.6; }
+  .vocab-category { font-size: 0.75rem; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+
+  .speak-btn {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: var(--bg);
+    border: none;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 0.85rem;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s;
+  }
+  .speak-btn:hover { background: var(--gold); }
+
+  /* ===== BOOKING ===== */
+  .booking-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 680px) { .booking-layout { grid-template-columns: 1fr; } }
+
+  .booking-form {
+    background: white;
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--card-shadow);
+  }
+
+  .booking-form h3 { font-size: 1.2rem; font-weight: 800; color: var(--navy); margin-bottom: 24px; }
+
+  .form-group { margin-bottom: 18px; }
+
+  .form-group label {
+    display: block;
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 7px;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    padding: 11px 14px;
+    border: 2px solid #e2e8f0;
+    border-radius: 10px;
+    font-size: 0.92rem;
+    font-family: 'Cairo', sans-serif;
+    outline: none;
+    transition: border 0.2s;
+    color: var(--text);
+    background: white;
+  }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus { border-color: var(--navy); }
+
+  .bookings-list { background: white; border-radius: var(--radius); padding: 28px; box-shadow: var(--card-shadow); }
+  .bookings-list h3 { font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: 18px; }
+
+  .booking-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid #f0f0f0;
+    gap: 12px;
+  }
+  .booking-item:last-child { border-bottom: none; }
+
+  .booking-info .b-name { font-weight: 700; font-size: 0.95rem; color: var(--navy); }
+  .booking-info .b-details { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+
+  .b-status {
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .b-status.pending { background: #fff8e1; color: #b7791f; }
+  .b-status.confirmed { background: #f0fff4; color: var(--success); }
+
+  .del-btn {
+    background: none;
+    border: none;
+    color: #e53e3e;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px;
+    border-radius: 6px;
+    transition: background 0.2s;
+  }
+  .del-btn:hover { background: #fff0f0; }
+
+  /* ===== TOAST ===== */
+  .toast {
+    position: fixed;
+    bottom: 30px; left: 50%; transform: translateX(-50%);
+    background: var(--navy);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s;
+    white-space: nowrap;
+  }
+  .toast.show { opacity: 1; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 24px;
+    font-size: 0.85rem;
+    margin-top: 40px;
+  }
+
+  footer span { color: var(--gold); font-weight: 700; }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 680px) {
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 0; }
+    .nav-links a { padding: 6px 8px; font-size: 0.78rem; }
+    .hero { padding: 50px 1rem 40px; }
+    .section { padding: 40px 1rem; }
+    .exam-box { padding: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="nav-logo">
+    <span class="star">★</span>
+    <span>Mr. Mostafa Nassar</span>
+  </div>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" class="active" id="nav-home">🏠 الرئيسية</a></li>
+    <li><a onclick="showPage('courses')" id="nav-courses">📚 الكورسات</a></li>
+    <li><a onclick="showPage('exam')" id="nav-exam">📝 امتحانات</a></li>
+    <li><a onclick="showPage('vocab')" id="nav-vocab">🔤 كلمات</a></li>
+    <li><a onclick="showPage('booking')" id="nav-booking">📅 حجز</a></li>
+  </ul>
+</nav>
+
+<!-- ==================== HOME ==================== -->
+<div id="page-home" class="page active">
+
+  <div class="hero">
+    <div class="hero-badge">✦ منصة تعليمية متكاملة</div>
+    <h1>Learn English with<br><span>Mr. Mostafa Nassar</span></h1>
+    <p class="hero-sub">منصتك الشاملة لتعلم اللغة الإنجليزية — كورسات، امتحانات، مفردات، وحجز مواعيد في مكان واحد</p>
+    <div class="hero-btns">
+      <button class="btn btn-gold" onclick="showPage('courses')">ابدأ التعلم الآن</button>
+      <button class="btn btn-outline" onclick="showPage('booking')">احجز درسك</button>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat-item"><div class="stat-num">4+</div><div class="stat-label">كورسات متاحة</div></div>
+    <div class="stat-item"><div class="stat-num">60+</div><div class="stat-label">سؤال في الامتحانات</div></div>
+    <div class="stat-item"><div class="stat-num">100+</div><div class="stat-label">كلمة إنجليزية</div></div>
+    <div class="stat-item"><div class="stat-num">∞</div><div class="stat-label">مواعيد مرنة</div></div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">
+      <div class="eyebrow">استكشف المنصة</div>
+      <h2>كل اللي تحتاجه في مكان واحد</h2>
+      <p>من الكورسات والامتحانات لحد المفردات وحجز المواعيد</p>
+    </div>
+
+    <div class="cards-grid">
+      <div class="card" onclick="showPage('courses')">
+        <div class="card-icon">📚</div>
+        <h3>الكورسات</h3>
+        <p>كورسات إنجليزي مخصوصة لكل المستويات من المبتدئ للمتقدم، مع محتوى شامل وعملي</p>
+        <span class="card-tag tag-beginner">Beginner → Advanced</span>
+      </div>
+      <div class="card" onclick="showPage('exam')">
+        <div class="card-icon">📝</div>
+        <h3>الامتحانات التفاعلية</h3>
+        <p>امتحانات متنوعة في القواعد والمفردات والمحادثة مع نتيجة فورية وتقييم دقيق</p>
+        <span class="card-tag tag-intermediate">Grammar & Vocab</span>
+      </div>
+      <div class="card" onclick="showPage('vocab')">
+        <div class="card-icon">🔤</div>
+        <h3>بنك المفردات</h3>
+        <p>مئات الكلمات الإنجليزية مع الترجمة العربية وجملة مثال وإمكانية الاستماع للنطق الصحيح</p>
+        <span class="card-tag tag-beginner">+ Audio</span>
+      </div>
+      <div class="card" onclick="showPage('booking')">
+        <div class="card-icon">📅</div>
+        <h3>حجز المواعيد</h3>
+        <p>احجز موعد درسك الخاص أو انضم لكورس جماعي باختيار الوقت المناسب ليك</p>
+        <span class="card-tag tag-advanced">Private & Group</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== COURSES ==================== -->
+<div id="page-courses" class="page">
+  <div class="page-header">
+    <h1>📚 الكورسات</h1>
+    <p>اختار الكورس المناسب لمستواك</p>
+  </div>
+
+  <div class="section">
+    <div class="filter-bar">
+      <button class="filter-btn active" onclick="filterCourses('all', this)">الكل</button>
+      <button class="filter-btn" onclick="filterCourses('beginner', this)">مبتدئ</button>
+      <button class="filter-btn" onclick="filterCourses('intermediate', this)">متوسط</button>
+      <button class="filter-btn" onclick="filterCourses('advanced', this)">متقدم</button>
+    </div>
+
+    <div class="cards-grid" id="courses-grid">
+
+      <div class="card" data-level="beginner">
+        <div class="card-icon">🌱</div>
+        <h3>English for Beginners</h3>
+        <p>الكورس المثالي لو بتبدأ من الصفر. حروف، أرقام، جمل أساسية، وتعارف بالإنجليزي.</p>
+        <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="card-tag tag-beginner">Beginner</span>
+          <span style="font-size:0.82rem;color:var(--muted);">⏱ 4 أسابيع</span>
+          <span style="font-size:0.82rem;color:var(--muted);">👥 جماعي</span>
+        </div>
+        <button class="btn btn-gold" style="margin-top:16px;width:100%;padding:10px;" onclick="bookCourse('English for Beginners')">احجز الآن</button>
+      </div>
+
+      <div class="card" data-level="intermediate">
+        <div class="card-icon">📖</div>
+        <h3>Grammar Essentials</h3>
+        <p>تأسيس قوي في القواعد: الأزمنة، الضمائر، الجمل الشرطية، وكل حاجة تحتاجها.</p>
+        <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="card-tag tag-intermediate">Intermediate</span>
+          <span style="font-size:0.82rem;color:var(--muted);">⏱ 6 أسابيع</span>
+          <span style="font-size:0.82rem;color:var(--muted);">👥 جماعي</span>
+        </div>
+        <button class="btn btn-gold" style="margin-top:16px;width:100%;padding:10px;" onclick="bookCourse('Grammar Essentials')">احجز الآن</button>
+      </div>
+
+      <div class="card" data-level="intermediate">
+        <div class="card-icon">💬</div>
+        <h3>Conversation Course</h3>
+        <p>مهارات المحادثة العملية: شاتنج، مقابلات، مواقف حياتية، وتعبير حر.</p>
+        <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="card-tag tag-intermediate">Intermediate</span>
+          <span style="font-size:0.82rem;color:var(--muted);">⏱ 4 أسابيع</span>
+          <span style="font-size:0.82rem;color:var(--muted);">👤 فردي / جماعي</span>
+        </div>
+        <button class="btn btn-gold" style="margin-top:16px;width:100%;padding:10px;" onclick="bookCourse('Conversation Course')">احجز الآن</button>
+      </div>
+
+      <div class="card" data-level="advanced">
+        <div class="card-icon">🎓</div>
+        <h3>Advanced Writing & Reading</h3>
+        <p>مهارات الكتابة الأكاديمية والقراءة النقدية للطلاب المتقدمين والمستعدين للامتحانات.</p>
+        <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="card-tag tag-advanced">Advanced</span>
+          <span style="font-size:0.82rem;color:var(--muted);">⏱ 8 أسابيع</span>
+          <span style="font-size:0.82rem;color:var(--muted);">👤 فردي</span>
+        </div>
+        <button class="btn btn-gold" style="margin-top:16px;width:100%;padding:10px;" onclick="bookCourse('Advanced Writing & Reading')">احجز الآن</button>
+      </div>
+
+      <div class="card" data-level="beginner">
+        <div class="card-icon">🔤</div>
+        <h3>Vocabulary Builder</h3>
+        <p>تعلم 500 كلمة أساسية بأسلوب ممتع مع أمثلة حياتية وتمارين يومية.</p>
+        <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="card-tag tag-beginner">Beginner</span>
+          <span style="font-size:0.82rem;color:var(--muted);">⏱ 3 أسابيع</span>
+          <span style="font-size:0.82rem;color:var(--muted);">👥 جماعي</span>
+        </div>
+        <button class="btn btn-gold" style="margin-top:16px;width:100%;padding:10px;" onclick="bookCourse('Vocabulary Builder')">احجز الآن</button>
+      </div>
+
+      <div class="card" data-level="advanced">
+        <div class="card-icon">🏆</div>
+        <h3>Exam Preparation (IELTS/TOEFL)</h3>
+        <p>استعداد مكثف لامتحانات الآيلتس والتوفل مع نماذج امتحانات وتصحيح فوري.</p>
+        <div style="margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;">
+          <span class="card-tag tag-advanced">Advanced</span>
+          <span style="font-size:0.82rem;color:var(--muted);">⏱ 12 أسبوع</span>
+          <span style="font-size:0.82rem;color:var(--muted);">👤 فردي</span>
+        </div>
+        <button class="btn btn-gold" style="margin-top:16px;width:100%;padding:10px;" onclick="bookCourse('IELTS/TOEFL Prep')">احجز الآن</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ==================== EXAM ==================== -->
+<div id="page-exam" class="page">
+  <div class="page-header">
+    <h1>📝 الامتحانات التفاعلية</h1>
+    <p>اختبر مستواك وشوف نتيجتك فورًا</p>
+  </div>
+
+  <div class="section">
+    <!-- Exam selector -->
+    <div id="exam-selector">
+      <div class="section-title">
+        <div class="eyebrow">اختار الامتحان</div>
+        <h2>نوع الامتحان</h2>
+      </div>
+      <div class="cards-grid">
+        <div class="card" onclick="startExam('grammar')">
+          <div class="card-icon">📐</div>
+          <h3>Grammar Test</h3>
+          <p>10 أسئلة في القواعد: أزمنة، ضمائر، وتراكيب جملة</p>
+          <span class="card-tag tag-intermediate">10 أسئلة · 10 دقائق</span>
+        </div>
+        <div class="card" onclick="startExam('vocab')">
+          <div class="card-icon">🔤</div>
+          <h3>Vocabulary Test</h3>
+          <p>10 أسئلة في المفردات: اختار الكلمة الصح من السياق</p>
+          <span class="card-tag tag-beginner">10 أسئلة · 8 دقائق</span>
+        </div>
+        <div class="card" onclick="startExam('mixed')">
+          <div class="card-icon">🎯</div>
+          <h3>Mixed Test</h3>
+          <p>10 أسئلة مختلطة: قواعد + مفردات + تعبير</p>
+          <span class="card-tag tag-advanced">10 أسئلة · 15 دقيقة</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Exam area -->
+    <div id="exam-area" style="display:none;">
+      <div class="exam-box">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;">
+          <h3 id="exam-title" style="font-size:1.1rem;font-weight:800;color:var(--navy);"></h3>
+          <span id="exam-counter" style="font-size:0.88rem;color:var(--muted);font-weight:700;"></span>
+        </div>
+        <div class="progress-bar-wrap">
+          <div class="progress-bar" id="exam-progress" style="width:10%;"></div>
+        </div>
+        <div id="question-container"></div>
+        <div class="exam-nav">
+          <button class="btn btn-outline" onclick="showExamSelector()" style="color:var(--navy);border-color:var(--navy);padding:10px 20px;font-size:0.9rem;">← خروج</button>
+          <button class="btn btn-gold" id="next-btn" onclick="nextQuestion()" style="padding:10px 28px;font-size:0.9rem;">التالي →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div id="exam-result" style="display:none;">
+      <div class="exam-box">
+        <div class="score-badge">
+          <div class="score-circle"><span id="score-pct"></span></div>
+          <h2 id="score-msg" style="font-size:1.4rem;font-weight:800;color:var(--navy);margin-bottom:8px;"></h2>
+          <p id="score-sub" style="color:var(--muted);margin-bottom:28px;"></p>
+          <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <button class="btn btn-gold" onclick="showExamSelector()">امتحان تاني</button>
+            <button class="btn btn-outline" onclick="showPage('vocab')" style="color:var(--navy);border-color:var(--navy);">راجع المفردات</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== VOCABULARY ==================== -->
+<div id="page-vocab" class="page">
+  <div class="page-header">
+    <h1>🔤 بنك المفردات</h1>
+    <p>ابحث عن أي كلمة واستمع لنطقها الصحيح</p>
+  </div>
+
+  <div class="section">
+    <div class="vocab-controls">
+      <input class="search-input" type="text" placeholder="🔍  ابحث عن كلمة إنجليزي أو عربي..." oninput="filterVocab(this.value)" id="vocab-search">
+      <select class="search-input" style="max-width:180px;" onchange="filterVocabCat(this.value)">
+        <option value="all">كل الأقسام</option>
+        <option value="Daily Life">Daily Life</option>
+        <option value="School">School</option>
+        <option value="Nature">Nature</option>
+        <option value="Emotions">Emotions</option>
+        <option value="Travel">Travel</option>
+        <option value="Food">Food</option>
+      </select>
+    </div>
+
+    <div class="vocab-grid" id="vocab-grid"></div>
+  </div>
+</div>
+
+<!-- ==================== BOOKING ==================== -->
+<div id="page-booking" class="page">
+  <div class="page-header">
+    <h1>📅 حجز مواعيد الدروس</h1>
+    <p>احجز درسك الخاص أو انضم لكورس جماعي</p>
+  </div>
+
+  <div class="section">
+    <div class="booking-layout">
+
+      <div class="booking-form">
+        <h3>📋 حجز جديد</h3>
+
+        <div class="form-group">
+          <label>الاسم بالكامل</label>
+          <input type="text" id="b-name" placeholder="اسمك هنا...">
+        </div>
+        <div class="form-group">
+          <label>رقم الموبايل / واتساب</label>
+          <input type="text" id="b-phone" placeholder="01XXXXXXXXX">
+        </div>
+        <div class="form-group">
+          <label>الكورس أو نوع الدرس</label>
+          <select id="b-course">
+            <option value="">اختار الكورس...</option>
+            <option>English for Beginners</option>
+            <option>Grammar Essentials</option>
+            <option>Conversation Course</option>
+            <option>Advanced Writing & Reading</option>
+            <option>Vocabulary Builder</option>
+            <option>IELTS/TOEFL Prep</option>
+            <option>درس خصوصي فردي</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>نوع الحجز</label>
+          <select id="b-type">
+            <option value="فردي">درس فردي خاص</option>
+            <option value="جماعي">مجموعة</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>اليوم المفضل</label>
+          <select id="b-day">
+            <option>السبت</option>
+            <option>الأحد</option>
+            <option>الاثنين</option>
+            <option>الثلاثاء</option>
+            <option>الأربعاء</option>
+            <option>الخميس</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>الوقت المفضل</label>
+          <select id="b-time">
+            <option>9:00 ص</option>
+            <option>10:00 ص</option>
+            <option>11:00 ص</option>
+            <option>12:00 م</option>
+            <option>3:00 م</option>
+            <option>4:00 م</option>
+            <option>5:00 م</option>
+            <option>6:00 م</option>
+            <option>7:00 م</option>
+            <option>8:00 م</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>ملاحظات (اختياري)</label>
+          <textarea id="b-notes" rows="3" placeholder="أي تفاصيل إضافية..."></textarea>
+        </div>
+        <button class="btn btn-gold" style="width:100%;padding:13px;" onclick="submitBooking()">✅ تأكيد الحجز</button>
+      </div>
+
+      <div class="bookings-list">
+        <h3>📌 الحجوزات المسجلة</h3>
+        <div id="bookings-list-container">
+          <p style="color:var(--muted);font-size:0.9rem;text-align:center;padding:30px 0;">لا توجد حجوزات بعد</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- FOOTER -->
+<footer>
+  <p>صُنع بـ ❤️ لمنصة <span>Mr. Mostafa Nassar</span> | English Learning Platform © 2025</p>
+</footer>
+
+<script>
+// ======================== NAVIGATION ========================
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  document.getElementById('nav-' + page).classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+// ======================== TOAST ========================
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ======================== COURSES FILTER ========================
+function filterCourses(level, btn) {
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('#courses-grid .card').forEach(card => {
+    card.style.display = (level === 'all' || card.dataset.level === level) ? '' : 'none';
+  });
+}
+
+function bookCourse(name) {
+  showPage('booking');
+  setTimeout(() => {
+    document.getElementById('b-course').value = name;
+  }, 100);
+}
+
+// ======================== VOCABULARY DATA ========================
+const vocabData = [
+  { en: 'Ambitious', ar: 'طموح', ex: 'She is very ambitious and works hard every day.', cat: 'Emotions' },
+  { en: 'Grateful', ar: 'ممتنّ / شاكر', ex: 'I am grateful for all your help.', cat: 'Emotions' },
+  { en: 'Confident', ar: 'واثق من نفسه', ex: 'He gave a confident presentation to the class.', cat: 'Emotions' },
+  { en: 'Curious', ar: 'فضولي', ex: 'Children are naturally curious about the world.', cat: 'Emotions' },
+  { en: 'Exhausted', ar: 'منهك / تعبان جداً', ex: 'She was exhausted after the long journey.', cat: 'Emotions' },
+  { en: 'Determine', ar: 'يُحدد / يعزم', ex: 'We need to determine the cause of the problem.', cat: 'School' },
+  { en: 'Assignment', ar: 'واجب / مهمة', ex: 'Please submit your assignment before Friday.', cat: 'School' },
+  { en: 'Schedule', ar: 'جدول / يُجدول', ex: 'We have a busy schedule this week.', cat: 'School' },
+  { en: 'Research', ar: 'بحث', ex: 'She spent hours doing research for her project.', cat: 'School' },
+  { en: 'Fluent', ar: 'طلق / بطلاقة', ex: 'He speaks French fluently.', cat: 'School' },
+  { en: 'Neighbor', ar: 'جار / جارة', ex: 'My neighbor is very friendly and helpful.', cat: 'Daily Life' },
+  { en: 'Appointment', ar: 'موعد', ex: 'I have a doctor\'s appointment at 3 PM.', cat: 'Daily Life' },
+  { en: 'Commute', ar: 'يتنقل للعمل', ex: 'He commutes to work by train every day.', cat: 'Daily Life' },
+  { en: 'Purchase', ar: 'يشتري / شراء', ex: 'She made a large purchase at the mall.', cat: 'Daily Life' },
+  { en: 'Routine', ar: 'روتين / عادة يومية', ex: 'Exercise is part of my daily routine.', cat: 'Daily Life' },
+  { en: 'Adventure', ar: 'مغامرة', ex: 'Traveling to new places is a great adventure.', cat: 'Travel' },
+  { en: 'Destination', ar: 'وجهة', ex: 'Paris is a popular tourist destination.', cat: 'Travel' },
+  { en: 'Luggage', ar: 'أمتعة', ex: 'Don\'t forget to label your luggage at the airport.', cat: 'Travel' },
+  { en: 'Itinerary', ar: 'خط سير الرحلة', ex: 'We planned a detailed itinerary for our trip.', cat: 'Travel' },
+  { en: 'Landscape', ar: 'منظر طبيعي', ex: 'The mountain landscape was breathtaking.', cat: 'Nature' },
+  { en: 'Harvest', ar: 'حصاد', ex: 'Farmers harvest wheat in summer.', cat: 'Nature' },
+  { en: 'Drought', ar: 'جفاف', ex: 'The drought caused serious water shortages.', cat: 'Nature' },
+  { en: 'Nutritious', ar: 'مغذّي', ex: 'Fruits and vegetables are very nutritious.', cat: 'Food' },
+  { en: 'Appetizing', ar: 'شهيّ / مثير للشهية', ex: 'The smell of the food was so appetizing.', cat: 'Food' },
+  { en: 'Recipe', ar: 'وصفة', ex: 'My grandmother taught me her secret recipe.', cat: 'Food' },
+  { en: 'Ingredient', ar: 'مُكوِّن', ex: 'Sugar is the main ingredient in this cake.', cat: 'Food' },
+  { en: 'Flavor', ar: 'نكهة / طعم', ex: 'This soup has a rich and delicious flavor.', cat: 'Food' },
+  { en: 'Persevere', ar: 'يصبر / يثابر', ex: 'You must persevere to achieve your goals.', cat: 'Emotions' },
+  { en: 'Sincere', ar: 'صادق / مخلص', ex: 'He gave a sincere apology to his friend.', cat: 'Emotions' },
+  { en: 'Volunteer', ar: 'متطوع / يتطوع', ex: 'She volunteers at the local library every week.', cat: 'Daily Life' },
+];
+
+let filteredVocab = [...vocabData];
+let activeVocabCat = 'all';
+let vocabSearch = '';
+
+function renderVocab() {
+  const grid = document.getElementById('vocab-grid');
+  const filtered = vocabData.filter(w => {
+    const matchCat = activeVocabCat === 'all' || w.cat === activeVocabCat;
+    const q = vocabSearch.toLowerCase();
+    const matchSearch = !q || w.en.toLowerCase().includes(q) || w.ar.includes(q);
+    return matchCat && matchSearch;
+  });
+
+  if (filtered.length === 0) {
+    grid.innerHTML = '<p style="color:var(--muted);text-align:center;padding:40px;grid-column:1/-1;">لم يتم العثور على نتائج</p>';
+    return;
+  }
+
+  grid.innerHTML = filtered.map((w, i) => `
+    <div class="vocab-card">
+      <button class="speak-btn" onclick="speak('${w.en}')" title="استمع للنطق">🔊</button>
+      <div class="vocab-category">${w.cat}</div>
+      <div class="vocab-en">${w.en}</div>
+      <div class="vocab-ar">${w.ar}</div>
+      <div class="vocab-ex">"${w.ex}"</div>
+    </div>
+  `).join('');
+}
+
+function filterVocab(val) {
+  vocabSearch = val;
+  renderVocab();
+}
+
+function filterVocabCat(val) {
+  activeVocabCat = val;
+  renderVocab();
+}
+
+function speak(word) {
+  if ('speechSynthesis' in window) {
+    const u = new SpeechSynthesisUtterance(word);
+    u.lang = 'en-US';
+    u.rate = 0.9;
+    speechSynthesis.speak(u);
+  } else {
+    showToast('المتصفح مش بيدعم النطق');
+  }
+}
+
+// ======================== EXAM ENGINE ========================
+const examBanks = {
+  grammar: [
+    { q: 'She ___ to school every day.', options: ['go', 'goes', 'going', 'gone'], correct: 1 },
+    { q: 'They ___ watching TV when I arrived.', options: ['were', 'was', 'are', 'is'], correct: 0 },
+    { q: 'I have ___ eaten lunch.', options: ['yet', 'already', 'still', 'just ago'], correct: 1 },
+    { q: 'If it rains, we ___ stay home.', options: ['will', 'would', 'shall', 'should'], correct: 0 },
+    { q: 'She is ___ than her sister.', options: ['tall', 'more tall', 'taller', 'tallest'], correct: 2 },
+    { q: 'He ___ work here since 2018.', options: ['has worked', 'works', 'worked', 'is working'], correct: 0 },
+    { q: 'The book ___ written by Tolstoy.', options: ['is', 'was', 'has been', 'were'], correct: 1 },
+    { q: 'I wish I ___ speak French.', options: ['can', 'could', 'will', 'would'], correct: 1 },
+    { q: 'Neither the boys nor the girl ___ ready.', options: ['are', 'is', 'were', 'have'], correct: 1 },
+    { q: 'By next year, I ___ studied English for 5 years.', options: ['will have', 'will be', 'have', 'will'], correct: 0 },
+  ],
+  vocab: [
+    { q: 'What is the meaning of "Ambitious"?', options: ['خائف', 'طموح', 'حزين', 'مريح'], correct: 1 },
+    { q: 'Choose the correct word: "I am ___ for your help."', options: ['jealous', 'grateful', 'boring', 'rude'], correct: 1 },
+    { q: 'What does "Exhausted" mean?', options: ['سعيد', 'فضولي', 'منهك', 'ذكي'], correct: 2 },
+    { q: '"She volunteers every week." What does "volunteer" mean?', options: ['تتعلم', 'تتطوع', 'تسافر', 'تشتري'], correct: 1 },
+    { q: 'Choose the correct synonym for "Purchase":',  options: ['Sell', 'Find', 'Buy', 'Lose'], correct: 2 },
+    { q: '"The food was appetizing." What does this mean?', options: ['سيئ الطعم', 'مثير للشهية', 'بارد جداً', 'غير مطبوخ'], correct: 1 },
+    { q: 'What is the meaning of "Fluent"?', options: ['بطيء', 'طلق / سلس', 'صعب', 'قصير'], correct: 1 },
+    { q: 'Choose the correct word: "Paris is a popular tourist ___."', options: ['schedule', 'luggage', 'destination', 'routine'], correct: 2 },
+    { q: '"We need to determine the cause." What does "determine" mean?', options: ['نتجاهل', 'نُحدد', 'نُغير', 'نحذف'], correct: 1 },
+    { q: 'What does "Drought" mean?', options: ['فيضان', 'جفاف', 'رياح', 'برد'], correct: 1 },
+  ],
+  mixed: [
+    { q: 'She ___ to school every day.', options: ['go', 'goes', 'going', 'to go'], correct: 1 },
+    { q: 'What is the meaning of "Confident"?', options: ['خائف', 'واثق من نفسه', 'حزين', 'مُرهق'], correct: 1 },
+    { q: 'I have ___ eaten lunch.', options: ['yet', 'already', 'never been', 'since'], correct: 1 },
+    { q: '"He commutes to work." What does "commute" mean?', options: ['يستقيل من العمل', 'يتأخر', 'يتنقل للعمل', 'يبحث عن عمل'], correct: 2 },
+    { q: 'If it rains, we ___ stay home.', options: ['will', 'would', 'are going to have to', 'should always'], correct: 0 },
+    { q: 'Choose the correct word: "Fruits are very ___ for your body."', options: ['nutritious', 'delicious', 'expensive', 'raw'], correct: 0 },
+    { q: 'He ___ work here since 2018.', options: ['has worked', 'works', 'worked', 'is working'], correct: 0 },
+    { q: 'What does "Persevere" mean?', options: ['يستسلم', 'يثابر', 'يتوقف', 'ينتقد'], correct: 1 },
+    { q: 'The book ___ written by Tolstoy.', options: ['is', 'was', 'has been', 'were'], correct: 1 },
+    { q: 'What does "Itinerary" mean?', options: ['تأشيرة سفر', 'خط سير الرحلة', 'حقيبة سفر', 'تذكرة طيران'], correct: 1 },
+  ]
+};
+
+let currentExam = [];
+let currentQ = 0;
+let answers = [];
+let selectedAnswer = null;
+let examAnswered = false;
+
+function startExam(type) {
+  currentExam = examBanks[type];
+  currentQ = 0;
+  answers = [];
+  selectedAnswer = null;
+  examAnswered = false;
+
+  const titles = { grammar: 'Grammar Test', vocab: 'Vocabulary Test', mixed: 'Mixed Test' };
+  document.getElementById('exam-title').textContent = titles[type];
+
+  document.getElementById('exam-selector').style.display = 'none';
+  document.getElementById('exam-result').style.display = 'none';
+  document.getElementById('exam-area').style.display = 'block';
+
+  renderQuestion();
+}
+
+function renderQuestion() {
+  const q = currentExam[currentQ];
+  const total = currentExam.length;
+
+  document.getElementById('exam-counter').textContent = `سؤال ${currentQ + 1} / ${total}`;
+  document.getElementById('exam-progress').style.width = `${((currentQ + 1) / total) * 100}%`;
+
+  const letters = ['A', 'B', 'C', 'D'];
+  const html = `
+    <div class="question-block">
+      <div class="q-num">QUESTION ${currentQ + 1}</div>
+      <div class="q-text">${q.q}</div>
+      <div class="options" id="options-wrap">
+        ${q.options.map((opt, i) => `
+          <div class="option" id="opt-${i}" onclick="selectOption(${i})">
+            <div class="option-letter">${letters[i]}</div>
+            <span>${opt}</span>
+          </div>
+        `).join('')}
+      </div>
+    </div>
+  `;
+  document.getElementById('question-container').innerHTML = html;
+
+  selectedAnswer = null;
+  examAnswered = false;
+  document.getElementById('next-btn').textContent = currentQ === currentExam.length - 1 ? 'عرض النتيجة' : 'التالي →';
+}
+
+function selectOption(i) {
+  if (examAnswered) return;
+  selectedAnswer = i;
+  document.querySelectorAll('.option').forEach((o, idx) => {
+    o.classList.toggle('selected', idx === i);
+  });
+}
+
+function nextQuestion() {
+  if (selectedAnswer === null) { showToast('اختار إجابة الأول!'); return; }
+
+  examAnswered = true;
+  const correct = currentExam[currentQ].correct;
+  answers.push({ selected: selectedAnswer, correct });
+
+  // Show feedback
+  document.querySelectorAll('.option').forEach((o, idx) => {
+    if (idx === correct) o.classList.add('correct');
+    else if (idx === selectedAnswer && idx !== correct) o.classList.add('wrong');
+    o.onclick = null;
+  });
+
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ < currentExam.length) {
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }, 900);
+}
+
+function showResult() {
+  const score = answers.filter(a => a.selected === a.correct).length;
+  const pct = Math.round((score / currentExam.length) * 100);
+
+  document.getElementById('exam-area').style.display = 'none';
+  document.getElementById('exam-result').style.display = 'block';
+
+  document.getElementById('score-pct').textContent = pct + '%';
+
+  let msg, sub;
+  if (pct >= 90) { msg = '🏆 ممتاز! Well done!'; sub = `أجبت ${score} من ${currentExam.length} صح. أداء رائع جداً!`; }
+  else if (pct >= 70) { msg = '✅ كويس جداً! Good Job!'; sub = `أجبت ${score} من ${currentExam.length} صح. في تحسن واضح!`; }
+  else if (pct >= 50) { msg = '📖 محتاج مراجعة | Keep Trying!'; sub = `أجبت ${score} من ${currentExam.length} صح. راجع المفردات والقواعد.`; }
+  else { msg = '💪 استمر في التعلم!'; sub = `أجبت ${score} من ${currentExam.length} صح. متوقفش، التمرين هيفرق!`; }
+
+  document.getElementById('score-msg').textContent = msg;
+  document.getElementById('score-sub').textContent = sub;
+}
+
+function showExamSelector() {
+  document.getElementById('exam-selector').style.display = 'block';
+  document.getElementById('exam-area').style.display = 'none';
+  document.getElementById('exam-result').style.display = 'none';
+}
+
+// ======================== BOOKING ========================
+let bookings = JSON.parse(localStorage.getItem('mnBookings') || '[]');
+
+function submitBooking() {
+  const name = document.getElementById('b-name').value.trim();
+  const phone = document.getElementById('b-phone').value.trim();
+  const course = document.getElementById('b-course').value;
+  const type = document.getElementById('b-type').value;
+  const day = document.getElementById('b-day').value;
+  const time = document.getElementById('b-time').value;
+  const notes = document.getElementById('b-notes').value.trim();
+
+  if (!name || !phone || !course) {
+    showToast('⚠️ من فضلك اكمل الاسم والموبايل والكورس');
+    return;
+  }
+
+  const booking = {
+    id: Date.now(),
+    name, phone, course, type, day, time, notes,
+    status: 'pending',
+    date: new Date().toLocaleDateString('ar-EG')
+  };
+
+  bookings.unshift(booking);
+  localStorage.setItem('mnBookings', JSON.stringify(bookings));
+
+  // Reset
+  ['b-name','b-phone','b-notes'].forEach(id => document.getElementById(id).value = '');
+  document.getElementById('b-course').value = '';
+
+  renderBookings();
+  showToast('✅ تم تسجيل حجزك! جاري فتح واتساب...');
+
+  // Send WhatsApp message to Mr. Mostafa
+  const msg = `🔔 *حجز جديد - Mr. Mostafa Nassar Platform*\n\n👤 *الاسم:* ${name}\n📱 *الموبايل:* ${phone}\n📚 *الكورس:* ${course}\n🎯 *نوع الدرس:* ${type}\n📅 *اليوم:* ${day}\n⏰ *الوقت:* ${time}${notes ? `\n📝 *ملاحظات:* ${notes}` : ''}\n\n✅ يرجى تأكيد الحجز مع الطالب.`;
+  const waURL = `https://wa.me/201009005444?text=${encodeURIComponent(msg)}`;
+  setTimeout(() => window.open(waURL, '_blank'), 800);
+}
+
+function deleteBooking(id) {
+  bookings = bookings.filter(b => b.id !== id);
+  localStorage.setItem('mnBookings', JSON.stringify(bookings));
+  renderBookings();
+  showToast('🗑️ تم حذف الحجز');
+}
+
+function confirmBooking(id) {
+  bookings = bookings.map(b => b.id === id ? { ...b, status: 'confirmed' } : b);
+  localStorage.setItem('mnBookings', JSON.stringify(bookings));
+  renderBookings();
+  showToast('✅ تم تأكيد الحجز');
+}
+
+function renderBookings() {
+  const container = document.getElementById('bookings-list-container');
+  if (bookings.length === 0) {
+    container.innerHTML = '<p style="color:var(--muted);font-size:0.9rem;text-align:center;padding:30px 0;">لا توجد حجوزات بعد</p>';
+    return;
+  }
+
+  container.innerHTML = bookings.map(b => `
+    <div class="booking-item">
+      <div class="booking-info">
+        <div class="b-name">${b.name}</div>
+        <div class="b-details">📚 ${b.course} · ${b.type}<br>📅 ${b.day} ${b.time} · ${b.date}</div>
+        ${b.notes ? `<div class="b-details" style="margin-top:4px;">📝 ${b.notes}</div>` : ''}
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+        <span class="b-status ${b.status}">${b.status === 'confirmed' ? '✅ مؤكد' : '⏳ انتظار'}</span>
+        ${b.status === 'pending' ? `<button onclick="confirmBooking(${b.id})" style="font-size:0.75rem;padding:3px 10px;background:var(--success);color:white;border:none;border-radius:6px;cursor:pointer;font-family:'Cairo',sans-serif;font-weight:700;">تأكيد</button>` : ''}
+        <button class="del-btn" onclick="deleteBooking(${b.id})" title="حذف">🗑️</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ======================== INIT ========================
+renderVocab();
+renderBookings();
+</script>
+</body>
+</html>
